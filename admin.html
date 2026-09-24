@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex">
+  <title>Update content | Sokunrith Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Literata:opsz,wght@7..72,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body { background: var(--paper); }
+    .admin { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 2rem; padding: 2rem 0 4rem; }
+    .gate { grid-column: 1 / -1; max-width: 640px; margin: 2rem auto; }
+    [hidden] { display: none !important; }
+    .side { position: sticky; top: 5rem; align-self: start; }
+    .side button { display: flex; justify-content: space-between; width: 100%; text-align: left; font: inherit; padding: .55rem .75rem; border: 0; background: none; color: var(--ink-soft); border-radius: var(--radius-s); cursor: pointer; }
+    .side button[aria-current="true"] { background: var(--ink); color: var(--paper); }
+    .side button span { opacity: .7; font-size: .9rem; }
+    h1 { font-size: 1.9rem; margin-bottom: .3rem; }
+    .lead { color: var(--ink-soft); margin: 0 0 1.5rem; max-width: 65ch; }
+    .panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-m); padding: 1.5rem; margin-bottom: 1.5rem; }
+    .panel h2 { font-size: 1.3rem; margin-bottom: 1rem; }
+    .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem 1.25rem; }
+    .field { display: flex; flex-direction: column; gap: .3rem; }
+    .field.wide { grid-column: 1 / -1; }
+    .field label { font-weight: 700; font-size: .95rem; }
+    .field small { color: var(--ink-soft); font-size: .85rem; }
+    .field input[type=text], .field input[type=url], .field input[type=date], .field input[type=number], .field input[type=email], .field input[type=password], .field select, .field textarea {
+      font: inherit; padding: .55rem .7rem; border: 1px solid var(--line); border-radius: var(--radius-s); background: var(--paper); color: var(--ink); width: 100%; }
+    .field textarea { min-height: 7rem; resize: vertical; }
+    .check { flex-direction: row; align-items: center; gap: .5rem; }
+    .row-actions { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.25rem; align-items: center; }
+    .btn { cursor: pointer; font-family: inherit; }
+    .btn-small { padding: .35rem .7rem; font-size: .9rem; border-width: 1px; }
+    .danger { color: #b3261e; border-color: #b3261e; background: transparent; }
+    .items { list-style: none; margin: 0; padding: 0; }
+    .items li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 1rem; align-items: center; padding: .8rem 0; border-top: 1px solid var(--line); }
+    .items li.editing { background: color-mix(in srgb, var(--saffron) 12%, transparent); }
+    .items .t { font-weight: 700; }
+    .items .s { color: var(--ink-soft); font-size: .9rem; }
+    .items .btns { display: flex; gap: .35rem; flex-wrap: wrap; justify-content: flex-end; }
+    .banner { border-left: 4px solid var(--saffron); background: var(--surface); padding: .9rem 1.1rem; border-radius: var(--radius-s); margin-bottom: 1.5rem; }
+    .banner[hidden] { display: none; }
+    .msg { font-size: .95rem; }
+    .msg.err { color: #b3261e; } .msg.ok { color: var(--teal); }
+    details summary { cursor: pointer; font-weight: 700; }
+    @media (max-width: 800px) { .admin { grid-template-columns: 1fr; } .side { position: static; display: flex; flex-wrap: wrap; gap: .25rem; } .side button { width: auto; } .form-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <header class="site-header"><div class="wrap">
+    <a class="brand" href="index.html"><span>Sokunrith Lab</span></a>
+    <div style="display:flex;gap:1.25rem;align-items:center"><span class="msg" id="who"></span><button class="linklike" id="signout" hidden>Sign out</button><a href="index.html">Back to website</a></div>
+  </div></header>
+
+  <div class="wrap admin">
+    <section class="panel gate" id="gate">
+      <h1>Owner sign-in</h1>
+      <p class="lead">This page edits the Sokunrith Lab website. Only a GitHub account with write access to the site's repository can open it.</p>
+      <div class="form-grid">
+        <div class="field wide"><label for="gate-token">GitHub access token</label><input type="password" id="gate-token" autocomplete="off">
+          <small>Use the fine-grained token you created for this repository (Contents: Read and write). See README.</small></div>
+        <div class="field wide check"><input type="checkbox" id="gate-remember"><label for="gate-remember">Keep me signed in on this device</label></div>
+      </div>
+      <details style="margin-top:1rem"><summary>Repository settings</summary>
+        <div class="form-grid" style="margin-top:1rem">
+          <div class="field"><label for="gh-owner">GitHub user</label><input type="text" id="gh-owner"></div>
+          <div class="field"><label for="gh-repo">Repository</label><input type="text" id="gh-repo"></div>
+          <div class="field"><label for="gh-branch">Branch</label><input type="text" id="gh-branch"></div>
+          <div class="field"><label for="gh-path">File path</label><input type="text" id="gh-path"></div>
+        </div>
+      </details>
+      <div class="row-actions"><button class="btn btn-primary" id="gate-go">Sign in</button><span class="msg" id="gate-msg" role="status"></span></div>
+    </section>
+    <nav class="side" id="side" aria-label="Sections" hidden></nav>
+    <main id="app" hidden>
+      <h1>Update site content</h1>
+      <p class="lead">Add or edit entries below. Changes stay in this browser as a draft until you click <strong>Publish to website</strong>.</p>
+
+      <div class="banner" id="dirty" hidden>
+        <strong>You have unpublished changes.</strong>
+        <div class="row-actions" style="margin-top:.6rem">
+          <button class="btn btn-primary btn-small" data-go="publish">Go to publish</button>
+          <button class="btn btn-ghost btn-small" id="discard">Discard draft</button>
+        </div>
+      </div>
+
+      <div id="editor"></div>
+
+      <section class="panel" id="publish">
+        <h2>Publish changes</h2>
+        <p class="lead" style="margin-bottom:1rem">Saves your changes to GitHub. The live site updates about a minute later.</p>
+        <div class="row-actions"><button class="btn btn-primary" id="gh-save">Publish to website</button><span class="msg" id="gh-msg" role="status"></span></div>
+        <details style="margin-top:1.25rem">
+          <summary>Backup: download data.js</summary>
+          <p>Keep a copy on your computer, or upload it manually on GitHub (Add file, Upload files) if publishing ever fails.</p>
+          <div class="row-actions"><button class="btn btn-ghost" id="dl">Download data.js</button><button class="btn btn-ghost" id="copy">Copy file contents</button></div>
+        </details>
+      </section>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+
+  <script src="data.js"></script>
+  <script>
+  (function () {
+    "use strict";
+    const DRAFT_KEY = "sokunrith-lab-draft", GH_KEY = "sokunrith-lab-gh";
+    const $ = (s) => document.querySelector(s);
+    const esc = (v) => String(v == null ? "" : v).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+    const clone = (o) => JSON.parse(JSON.stringify(o));
+    const published = clone(window.LAB_DATA || {});
+    let data;
+    try { data = JSON.parse(localStorage.getItem(DRAFT_KEY)) || clone(published); } catch (e) { data = clone(published); }
+
+    /* ---- What each section contains ---- */
+    const SCHEMA = {
+      publications: { label: "Publications", title: (x) => x.title, sub: (x) => [x.year, x.venue, x.status].filter(Boolean).join(", "), fields: [
+        { k: "doi", l: "DOI", help: "e.g. 10.1080/13603116.2026.2645184. Use \"Fill from DOI\" to complete the rest automatically.", doi: true, wide: true },
+        { k: "title", l: "Title", wide: true, req: true },
+        { k: "authors", l: "Authors", wide: true, help: "APA style, e.g. Pov, S., & Kawai, N." },
+        { k: "venue", l: "Journal / book / proceedings", wide: true },
+        { k: "year", l: "Year", t: "number" },
+        { k: "type", l: "Type", t: "select", o: ["Journal article", "Book chapter", "Book", "Conference proceedings", "Report", "Policy brief", "Other"] },
+        { k: "status", l: "Status", t: "select", o: ["Published", "In press", "Accepted", "Under review", "In preparation"], help: "Anything other than Published is listed under Forthcoming." },
+        { k: "volume", l: "Volume (issue)", help: "e.g. 24(3)" },
+        { k: "pages", l: "Pages" },
+        { k: "url", l: "Link (if no DOI)", t: "url" },
+        { k: "featured", l: "Show as a selected work", t: "check" } ] },
+      conferences: { label: "Conferences", title: (x) => x.title, sub: (x) => [x.date, x.event].filter(Boolean).join(", "), fields: [
+        { k: "title", l: "Presentation title", wide: true, req: true },
+        { k: "authors", l: "Presenters", wide: true },
+        { k: "event", l: "Conference / event", wide: true },
+        { k: "location", l: "Location" },
+        { k: "date", l: "Date", t: "date", help: "Future dates are shown as Upcoming." },
+        { k: "type", l: "Type", t: "select", o: ["Presentation", "Poster", "Invited talk", "Keynote", "Symposium", "Workshop", "Panel"] },
+        { k: "url", l: "Link", t: "url" } ] },
+      projects: { label: "Projects", title: (x) => x.title, sub: (x) => [x.status, x.period].filter(Boolean).join(", "), fields: [
+        { k: "title", l: "Project title", wide: true, req: true },
+        { k: "status", l: "Status", t: "select", o: ["Ongoing", "Planned", "Completed"] },
+        { k: "period", l: "Period", help: "e.g. 2026–2029" },
+        { k: "role", l: "Your role", help: "e.g. Principal investigator" },
+        { k: "funder", l: "Funder", help: "e.g. JSPS KAKENHI (Grant No. …)" },
+        { k: "partners", l: "Partners", wide: true },
+        { k: "summary", l: "Summary", t: "area", wide: true },
+        { k: "url", l: "Link", t: "url" } ] },
+      news: { label: "News", title: (x) => x.title, sub: (x) => x.date, fields: [
+        { k: "date", l: "Date", t: "date", req: true },
+        { k: "title", l: "Headline", wide: true, req: true },
+        { k: "body", l: "Short description", t: "area", wide: true },
+        { k: "link", l: "Link", t: "url" } ] },
+      teaching: { label: "Teaching", title: (x) => x.title, sub: (x) => [x.level, x.term, x.year].filter(Boolean).join(", "), fields: [
+        { k: "title", l: "Course title", wide: true, req: true },
+        { k: "level", l: "Level / programme" },
+        { k: "term", l: "Term" },
+        { k: "year", l: "Year" },
+        { k: "url", l: "Syllabus link", t: "url" },
+        { k: "description", l: "Description", t: "area", wide: true } ] },
+      members: { label: "People", title: (x) => x.name, sub: (x) => x.role, fields: [
+        { k: "name", l: "Name", req: true },
+        { k: "role", l: "Role", help: "e.g. PhD student, Research assistant, Alumni" },
+        { k: "bio", l: "Short bio", t: "area", wide: true },
+        { k: "email", l: "Email" },
+        { k: "link", l: "Profile link", t: "url" },
+        { k: "photo", l: "Photo path", help: "Upload the image to the images/ folder, then enter e.g. images/name.jpg", wide: true } ] },
+      themes: { label: "Research themes", title: (x) => x.title, sub: () => "", fields: [
+        { k: "title", l: "Theme", wide: true, req: true },
+        { k: "description", l: "Description", t: "area", wide: true } ] },
+      links: { label: "Profile links", title: (x) => x.label, sub: (x) => x.url, fields: [
+        { k: "label", l: "Label", req: true }, { k: "url", l: "URL", t: "url", req: true } ] }
+    };
+    const SINGLE = {
+      profile: { label: "Lab profile", fields: [
+        { k: "labName", l: "Lab name" }, { k: "piName", l: "Lead researcher" },
+        { k: "piTitle", l: "Title" }, { k: "email", l: "Email" },
+        { k: "affiliation", l: "Affiliation", wide: true },
+        { k: "address", l: "Address", wide: true },
+        { k: "tagline", l: "Tagline (shown under the lab name)", t: "area", wide: true },
+        { k: "about", l: "About text", t: "area", wide: true, help: "Leave a blank line between paragraphs.", tall: true },
+        { k: "photo", l: "Portrait path", wide: true, help: "Upload a photo to images/, then enter e.g. images/sokunrith.jpg. Leave empty to show initials." } ] },
+      join: { label: "Join the lab text", fields: [ { k: "text", l: "Message to prospective members", t: "area", wide: true } ] }
+    };
+    const ORDER = ["publications", "conferences", "projects", "news", "teaching", "members", "themes", "profile", "links", "join"];
+    let section = "publications", editIndex = -1;
+
+    /* ---- Rendering ---- */
+    function fieldHtml(f, val) {
+      const id = "f-" + f.k, help = f.help ? `<small>${esc(f.help)}</small>` : "";
+      const cls = "field" + (f.wide ? " wide" : "") + (f.t === "check" ? " check" : "");
+      if (f.t === "check") return `<div class="${cls}"><input type="checkbox" id="${id}" ${val ? "checked" : ""}><label for="${id}">${esc(f.l)}</label></div>`;
+      let input;
+      if (f.t === "select") input = `<select id="${id}">${f.o.map((o) => `<option ${o === val ? "selected" : ""}>${esc(o)}</option>`).join("")}</select>`;
+      else if (f.t === "area") input = `<textarea id="${id}" ${f.tall ? 'style="min-height:16rem"' : ""}>${esc(val)}</textarea>`;
+      else input = `<input type="${f.t === "number" ? "number" : f.t === "date" ? "date" : f.t === "url" ? "url" : "text"}" id="${id}" value="${esc(val)}" ${f.req ? "required" : ""}>`;
+      const doiBtn = f.doi ? `<button type="button" class="btn btn-ghost btn-small" id="doi-fill" style="align-self:flex-start;margin-top:.3rem">Fill from DOI</button>` : "";
+      return `<div class="${cls}"><label for="${id}">${esc(f.l)}${f.req ? " (required)" : ""}</label>${input}${help}${doiBtn}</div>`;
+    }
+    function readForm(fields) {
+      const out = {};
+      fields.forEach((f) => { const el = document.getElementById("f-" + f.k); out[f.k] = f.t === "check" ? el.checked : f.t === "number" ? (el.value ? Number(el.value) : "") : el.value.trim(); });
+      return out;
+    }
+    function renderSide() {
+      $("#side").innerHTML = ORDER.map((k) => {
+        const lab = (SCHEMA[k] || SINGLE[k]).label, n = SCHEMA[k] ? `<span>${(data[k] || []).length}</span>` : "";
+        return `<button data-s="${k}" aria-current="${k === section}">${esc(lab)}${n}</button>`;
+      }).join("");
+    }
+    function render() {
+      renderSide();
+      $("#dirty").hidden = JSON.stringify(data) === JSON.stringify(published);
+      if (SINGLE[section]) {
+        const S = SINGLE[section], obj = data[section] || {};
+        $("#editor").innerHTML = `<section class="panel"><h2>${esc(S.label)}</h2><div class="form-grid">${S.fields.map((f) => fieldHtml(f, obj[f.k])).join("")}</div>
+          <div class="row-actions"><button class="btn btn-primary" id="save-single">Save to draft</button></div></section>`;
+        $("#save-single").onclick = () => { data[section] = Object.assign({}, obj, readForm(S.fields)); commit("Saved to draft"); };
+        return;
+      }
+      const S = SCHEMA[section], list = data[section] = data[section] || [];
+      const cur = editIndex >= 0 ? list[editIndex] : {};
+      $("#editor").innerHTML = `
+        <section class="panel"><h2>${editIndex >= 0 ? "Edit entry" : "Add to " + esc(S.label.toLowerCase())}</h2>
+          <div class="form-grid">${S.fields.map((f) => fieldHtml(f, cur[f.k] != null ? cur[f.k] : (f.t === "select" ? f.o[0] : ""))).join("")}</div>
+          <div class="row-actions"><button class="btn btn-primary" id="save-item">${editIndex >= 0 ? "Save changes" : "Add entry"}</button>
+          ${editIndex >= 0 ? '<button class="btn btn-ghost" id="cancel-edit">Cancel</button>' : ""}<span class="msg" id="form-msg" role="status"></span></div>
+        </section>
+        <section class="panel"><h2>${esc(S.label)} (${list.length})</h2>
+          <ul class="items">${list.map((x, i) => `<li class="${i === editIndex ? "editing" : ""}"><div><div class="t">${esc(S.title(x))}</div><div class="s">${esc(S.sub(x))}</div></div>
+            <div class="btns"><button class="btn btn-ghost btn-small" data-act="up" data-i="${i}" aria-label="Move up" ${i === 0 ? "disabled" : ""}>↑</button>
+            <button class="btn btn-ghost btn-small" data-act="down" data-i="${i}" aria-label="Move down" ${i === list.length - 1 ? "disabled" : ""}>↓</button>
+            <button class="btn btn-ghost btn-small" data-act="edit" data-i="${i}">Edit</button>
+            <button class="btn btn-small danger" data-act="del" data-i="${i}">Delete</button></div></li>`).join("") || '<li class="empty">No entries yet.</li>'}</ul>
+          <p class="s" style="color:var(--ink-soft);font-size:.9rem;margin:.75rem 0 0">Publications, conferences, and news are sorted by date on the website automatically; order here only matters for other sections.</p>
+        </section>`;
+      $("#save-item").onclick = () => {
+        const item = readForm(S.fields), missing = S.fields.filter((f) => f.req && !item[f.k]);
+        if (missing.length) { const m = $("#form-msg"); m.className = "msg err"; m.textContent = "Fill in: " + missing.map((f) => f.l).join(", "); return; }
+        if (editIndex >= 0) list[editIndex] = Object.assign({}, list[editIndex], item); else list.unshift(item);
+        const was = editIndex; editIndex = -1; commit(was >= 0 ? "Entry updated" : "Entry added");
+      };
+      if ($("#cancel-edit")) $("#cancel-edit").onclick = () => { editIndex = -1; render(); };
+      if ($("#doi-fill")) $("#doi-fill").onclick = fillFromDoi;
+    }
+    function commit(msg) { localStorage.setItem(DRAFT_KEY, JSON.stringify(data)); render(); if (msg) toast(msg); }
+
+    $("#side").addEventListener("click", (e) => { const b = e.target.closest("button"); if (b) { section = b.dataset.s; editIndex = -1; render(); window.scrollTo(0, 0); } });
+    $("#editor").addEventListener("click", (e) => {
+      const b = e.target.closest("[data-act]"); if (!b) return;
+      const i = Number(b.dataset.i), list = data[section];
+      if (b.dataset.act === "edit") { editIndex = i; render(); window.scrollTo({ top: 0 }); }
+      if (b.dataset.act === "del" && confirm("Delete this entry?")) { list.splice(i, 1); editIndex = -1; commit("Entry deleted"); }
+      if (b.dataset.act === "up" && i > 0) { [list[i - 1], list[i]] = [list[i], list[i - 1]]; commit(); }
+      if (b.dataset.act === "down" && i < list.length - 1) { [list[i + 1], list[i]] = [list[i], list[i + 1]]; commit(); }
+    });
+    document.addEventListener("click", (e) => { if (e.target.closest("[data-go=publish]")) $("#publish").scrollIntoView({ behavior: "smooth" }); });
+    $("#discard").onclick = () => { if (confirm("Discard all unpublished changes?")) { localStorage.removeItem(DRAFT_KEY); data = clone(published); editIndex = -1; render(); } };
+
+    /* ---- DOI lookup via Crossref ---- */
+    async function fillFromDoi() {
+      const msg = $("#form-msg"), doi = $("#f-doi").value.trim().replace(/^https?:\/\/(dx\.)?doi\.org\//i, "");
+      if (!doi) { msg.className = "msg err"; msg.textContent = "Enter a DOI first."; return; }
+      msg.className = "msg"; msg.textContent = "Looking up DOI…";
+      try {
+        const r = await fetch("https://api.crossref.org/works/" + encodeURIComponent(doi));
+        if (!r.ok) throw new Error("DOI not found in Crossref");
+        const w = (await r.json()).message;
+        const names = (w.author || []).map((a) => a.family ? `${a.family}, ${(a.given || "").split(/[\s-]+/).filter(Boolean).map((g) => g[0] + ".").join(" ")}` : a.name).filter(Boolean);
+        const authors = names.length > 1 ? names.slice(0, -1).join(", ") + ", & " + names[names.length - 1] : (names[0] || "");
+        const year = ((w.published || w["published-print"] || w["published-online"] || w.issued || {})["date-parts"] || [[""]])[0][0];
+        const set = (k, v) => { const el = $("#f-" + k); if (el && v) el.value = v; };
+        set("doi", doi); set("title", (w.title || [])[0]); set("authors", authors);
+        set("venue", (w["container-title"] || [])[0]); set("year", year);
+        set("volume", w.volume ? w.volume + (w.issue ? `(${w.issue})` : "") : ""); set("pages", (w.page || "").replace("-", "–"));
+        const typeMap = { "journal-article": "Journal article", "book-chapter": "Book chapter", "book": "Book", "proceedings-article": "Conference proceedings", "report": "Report" };
+        if (typeMap[w.type]) set("type", typeMap[w.type]);
+        msg.className = "msg ok"; msg.textContent = "Filled in. Check the details, then add the entry.";
+      } catch (err) { msg.className = "msg err"; msg.textContent = err.message + ". Fill in the fields by hand."; }
+    }
+
+    /* ---- Export ---- */
+    function fileText() {
+      return "/* ============================================================\n   SOKUNRITH LAB — SITE CONTENT\n   Edit with admin.html, or edit this file directly on GitHub.\n   Dates use the format YYYY-MM-DD.\n   Last updated: " + new Date().toISOString().slice(0, 10) + "\n   ============================================================ */\nwindow.LAB_DATA = " + JSON.stringify(data, null, 2) + ";\n";
+    }
+    $("#dl").onclick = () => { const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([fileText()], { type: "text/javascript" })); a.download = "data.js"; a.click(); URL.revokeObjectURL(a.href); };
+    $("#copy").onclick = () => navigator.clipboard.writeText(fileText()).then(() => toast("File contents copied"));
+
+    /* ---- Owner sign-in: only accounts with write access to the repo get in ---- */
+    let gh = {}; try { gh = JSON.parse(localStorage.getItem(GH_KEY) || sessionStorage.getItem(GH_KEY)) || {}; } catch (e) {}
+    $("#gh-owner").value = gh.owner || "Sokunrith";
+    $("#gh-repo").value = gh.repo || "well-being-promotion-office-report";
+    $("#gh-branch").value = gh.branch || "main";
+    $("#gh-path").value = gh.path || "data.js";
+    const cfg = () => ({ owner: $("#gh-owner").value.trim(), repo: $("#gh-repo").value.trim(), branch: $("#gh-branch").value.trim() || "main", path: $("#gh-path").value.trim() || "data.js", token: gh.token || "" });
+    const headers = (t) => ({ Authorization: "Bearer " + t, Accept: "application/vnd.github+json" });
+
+    async function verify(token, c) {
+      const r = await fetch(`https://api.github.com/repos/${encodeURIComponent(c.owner)}/${encodeURIComponent(c.repo)}`, { headers: headers(token), cache: "no-store" });
+      if (r.status === 401) throw new Error("This token was not accepted by GitHub");
+      if (!r.ok) throw new Error("This token cannot access the repository");
+      const j = await r.json();
+      if (!j.permissions || !j.permissions.push) throw new Error("This account does not have permission to edit the site");
+      const u = await fetch("https://api.github.com/user", { headers: headers(token) }).then((x) => x.ok ? x.json() : {}).catch(() => ({}));
+      return u.login || c.owner;
+    }
+    function unlock(login) {
+      $("#gate").hidden = true; $("#side").hidden = false; $("#app").hidden = false; $("#signout").hidden = false;
+      $("#who").textContent = "Signed in as " + login; render();
+    }
+    function lock(message) {
+      gh.token = ""; localStorage.removeItem(GH_KEY); sessionStorage.removeItem(GH_KEY);
+      $("#gate").hidden = false; $("#side").hidden = true; $("#app").hidden = true; $("#signout").hidden = true; $("#who").textContent = "";
+      $("#gate-token").value = ""; const m = $("#gate-msg"); m.className = message ? "msg err" : "msg"; m.textContent = message || "";
+    }
+    $("#gate-go").onclick = async () => {
+      const token = $("#gate-token").value.trim(), c = cfg(), m = $("#gate-msg");
+      if (!token) { m.className = "msg err"; m.textContent = "Enter your access token."; return; }
+      m.className = "msg"; m.textContent = "Checking…";
+      try {
+        const login = await verify(token, c);
+        gh = Object.assign(c, { token });
+        const store = $("#gate-remember").checked ? localStorage : sessionStorage;
+        localStorage.removeItem(GH_KEY); sessionStorage.removeItem(GH_KEY); store.setItem(GH_KEY, JSON.stringify(gh));
+        m.textContent = ""; unlock(login);
+      } catch (err) { m.className = "msg err"; m.textContent = err.message + "."; }
+    };
+    $("#gate-token").addEventListener("keydown", (e) => { if (e.key === "Enter") $("#gate-go").click(); });
+    $("#signout").onclick = () => lock();
+
+    /* ---- Publish to GitHub ---- */
+    const b64 = (s) => { const bytes = new TextEncoder().encode(s); let bin = ""; bytes.forEach((b) => bin += String.fromCharCode(b)); return btoa(bin); };
+    $("#gh-save").onclick = async () => {
+      const c = cfg(), msg = $("#gh-msg");
+      msg.className = "msg"; msg.textContent = "Publishing…";
+      const api = `https://api.github.com/repos/${encodeURIComponent(c.owner)}/${encodeURIComponent(c.repo)}/contents/${c.path.split("/").map(encodeURIComponent).join("/")}`;
+      try {
+        let sha;
+        const cur = await fetch(api + "?ref=" + encodeURIComponent(c.branch), { headers: headers(c.token), cache: "no-store" });
+        if (cur.status === 401) { lock("Your sign-in has expired. Sign in again; your draft is kept."); return; }
+        if (cur.ok) sha = (await cur.json()).sha; else if (cur.status !== 404) throw new Error("GitHub returned " + cur.status);
+        const res = await fetch(api, { method: "PUT", headers: headers(c.token), body: JSON.stringify({ message: "Update site content via admin page", content: b64(fileText()), branch: c.branch, sha }) });
+        if (!res.ok) { const j = await res.json().catch(() => ({})); throw new Error(j.message || "GitHub returned " + res.status); }
+        Object.keys(published).forEach((k) => delete published[k]); Object.assign(published, clone(data));
+        localStorage.removeItem(DRAFT_KEY); render();
+        msg.className = "msg ok"; msg.textContent = "Published. The live site updates in about a minute.";
+      } catch (err) { msg.className = "msg err"; msg.textContent = err.message + ". Your draft is still here."; }
+    };
+
+    function toast(m) { const t = $("#toast"); t.textContent = m; t.classList.add("show"); clearTimeout(toast._t); toast._t = setTimeout(() => t.classList.remove("show"), 1800); }
+    if (gh.token) {
+      verify(gh.token, cfg()).then(unlock, () => lock("Please sign in again."));
+    }
+  })();
+  </script>
+</body>
+</html>

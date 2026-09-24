@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Sokunrith Lab | Inclusive Education and Well-Being, Hiroshima University</title>
+  <meta name="description" content="Sokunrith Lab at Hiroshima University researches inclusive education, teacher and student well-being, and education policy in Cambodia, Japan, and the Asia-Pacific.">
+  <meta property="og:title" content="Sokunrith Lab">
+  <meta property="og:description" content="Inclusive education and well-being research at Hiroshima University.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect x='4' y='11' width='24' height='4' fill='%231d7566'/><rect x='4' y='19' width='24' height='4' fill='%23d9960f'/><rect x='11' y='4' width='4' height='24' fill='%2316223b'/><rect x='19' y='4' width='4' height='24' fill='%236f9cc4'/><rect x='11' y='11' width='4' height='4' fill='%2316223b'/><rect x='19' y='19' width='4' height='4' fill='%236f9cc4'/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Literata:opsz,wght@7..72,400;7..72,500;7..72,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="#top" aria-label="Sokunrith Lab, back to top">
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+          <rect x="4" y="11" width="24" height="4" fill="var(--teal)"/><rect x="4" y="19" width="24" height="4" fill="var(--saffron)"/>
+          <rect x="11" y="4" width="4" height="24" fill="var(--ink)"/><rect x="19" y="4" width="4" height="24" fill="var(--sky)"/>
+          <rect x="11" y="11" width="4" height="4" fill="var(--teal)"/><rect x="19" y="19" width="4" height="4" fill="var(--saffron)"/>
+        </svg>
+        <span data-bind="labName">Sokunrith Lab</span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <ul class="nav-list">
+          <li><a href="#about">About</a></li>
+          <li><a href="#research">Research</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#publications">Publications</a></li>
+          <li><a href="#talks">Conferences</a></li>
+          <li><a href="#teaching">Teaching</a></li>
+          <li><a href="#news">News</a></li>
+          <li><a href="#people">People</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="wrap">
+        <div>
+          <h1 data-bind="labName">Sokunrith Lab</h1>
+          <p class="tagline" data-bind="tagline"></p>
+          <p class="pi-line">Led by <strong data-bind="piName"></strong>, <span data-bind="piTitle"></span>, <span data-bind="affiliation"></span>.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="#publications">Browse publications</a>
+            <a class="btn btn-ghost" href="#people">Join the lab</a>
+          </div>
+        </div>
+        <div class="weave" id="weave" role="img" aria-label="Woven threads in five colours, representing diverse learners in one classroom"></div>
+      </div>
+    </section>
+
+    <section class="section" id="about" aria-labelledby="about-h">
+      <div class="wrap">
+        <div class="section-head"><h2 id="about-h">About</h2></div>
+        <div class="about-grid">
+          <div>
+            <div class="prose" id="about-text"></div>
+            <ul class="profile-links" id="profile-links"></ul>
+          </div>
+          <aside id="portrait"></aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="research" aria-labelledby="research-h">
+      <div class="wrap">
+        <div class="section-head"><h2 id="research-h">Research</h2><p>What the lab studies.</p></div>
+        <div class="themes" id="themes"></div>
+      </div>
+    </section>
+
+    <section class="section" id="projects" aria-labelledby="projects-h">
+      <div class="wrap">
+        <div class="section-head"><h2 id="projects-h">Projects</h2><p>Current and past studies.</p></div>
+        <div>
+          <div class="toolbar"><div class="chips" id="project-filters" role="group" aria-label="Filter projects by status"></div></div>
+          <div id="project-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="publications" aria-labelledby="pubs-h">
+      <div class="wrap">
+        <div class="section-head"><h2 id="pubs-h">Publications</h2><p>Highlighted entries are selected works.</p></div>
+        <div>
+          <div class="toolbar">
+            <div class="chips" id="pub-filters" role="group" aria-label="Filter publications"></div>
+            <label class="sr-only" for="pub-search">Search publications</label>
+            <input class="search" id="pub-search" type="search" placeholder="Search titles, journals, co-authors">
+          </div>
+          <p class="count" id="pub-count" aria-live="polite"></p>
+          <div id="pub-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="talks" aria-labelledby="talks-h">
+      <div class="wrap">
+        <div class="section-head"><h2 id="talks-h">Conferences</h2><p>Presentations and invited talks.</p></div>
+        <div id="talk-list"></div>
+      </div>
+    </section>
+
+    <section class="section" id="teaching" aria-labelledby="teaching-h">
+      <div class="wrap">
+        <div class="section-head"><h2 id="teaching-h">Teaching</h2><p>Courses at Hiroshima University.</p></div>
+        <ul class="list-rows" id="teaching-list"></ul>
+      </div>
+    </section>
+
+    <section class="section" id="news" aria-labelledby="news-h">
+      <div class="wrap">
+        <div class="section-head"><h2 id="news-h">News</h2></div>
+        <ul class="list-rows" id="news-list"></ul>
+      </div>
+    </section>
+
+    <section class="section" id="people" aria-labelledby="people-h">
+      <div class="wrap">
+        <div class="section-head"><h2 id="people-h">People</h2></div>
+        <div>
+          <div class="members" id="member-list"></div>
+          <div class="join">
+            <h3>Join the lab</h3>
+            <p id="join-text"></p>
+            <a class="btn btn-primary" id="join-mail" href="#">Email Dr. Pov</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact" id="contact" aria-labelledby="contact-h">
+      <div class="wrap">
+        <div class="section-head"><h2 id="contact-h">Contact</h2></div>
+        <dl>
+          <dt>Email</dt><dd><a id="contact-email" href="#"></a></dd>
+          <dt>Office</dt><dd data-bind="affiliation"></dd>
+          <dt>Address</dt><dd data-bind="address"></dd>
+        </dl>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>© <span id="year"></span> <span data-bind="labName"></span>, Hiroshima University</span>
+      <span>Hiroshima University, Higashi-Hiroshima, Japan</span>
+    </div>
+  </footer>
+  <div class="toast" id="toast" role="status"></div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
