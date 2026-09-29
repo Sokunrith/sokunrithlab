@@ -489,6 +489,14 @@ window.LAB_DATA = {
   ],
   "members": [
     {
+      "name": "Sako",
+      "role": "co-investigator",
+      "bio": "",
+      "email": "sokunrithp@gmail.com",
+      "link": "",
+      "photo": "sako.jpg.jpg"
+    },
+    {
       "name": "Sokunrith Pov, PhD",
       "role": "Principal investigator",
       "bio": "Associate Professor, Well-Being Promotion Office, Institute for Diversity and Inclusion, Hiroshima University.",
