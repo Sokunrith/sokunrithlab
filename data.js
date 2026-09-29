@@ -429,7 +429,7 @@ window.LAB_DATA = {
     },
     {
       "title": "Basic Theory and Practice of Inclusive Education",
-      "level": "Undergraduate",
+      "level": "Undergraduate / HUSA",
       "term": "First semester",
       "year": "2026",
       "description": "",
