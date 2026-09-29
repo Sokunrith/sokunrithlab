@@ -66,6 +66,26 @@ window.LAB_DATA = {
   ],
   "projects": [
     {
+      "title": "Technical Professional Learning Programme on Training of Trainer (ToT) on Strengthening Teachers’ Psychological Well-Being to Support Professional Performance and Resilience",
+      "status": "Ongoing",
+      "period": "September 17-October 21, 2026",
+      "role": "Project Leader",
+      "funder": "The Directorate of Secondary Education and Special Education Teachers, The Directorate General of Teachers, Education Personnel, and Teacher Education, Ministry of Primary and Secondary Education",
+      "partners": "The Directorate of Secondary Education and Special Education Teachers, The Directorate General of Teachers, Education Personnel, and Teacher Education, Ministry of Primary and Secondary Education",
+      "summary": "",
+      "url": ""
+    },
+    {
+      "title": "Microcredential Program: Teacher Training Program in Inclusive Education",
+      "status": "Ongoing",
+      "period": "August 21-October 20, 2026",
+      "role": "Project Leader",
+      "funder": "The Directorate of Secondary Education and Special Education Teachers, The Directorate General of Teachers, Education Personnel, and Teacher Education, Ministry of Primary and Secondary Education",
+      "partners": "The Directorate of Secondary Education and Special Education Teachers, The Directorate General of Teachers, Education Personnel, and Teacher Education, Ministry of Primary and Secondary Education",
+      "summary": "",
+      "url": ""
+    },
+    {
       "title": "Capacity Building Program on Inclusive Early Childhood Education for Indonesian Kindergarten Teachers",
       "status": "Ongoing",
       "period": "November 6-15, 2026",
