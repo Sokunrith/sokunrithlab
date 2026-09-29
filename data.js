@@ -18,6 +18,14 @@ window.LAB_DATA = {
   },
   "links": [
     {
+      "label": "Web of Science",
+      "url": "https://www.webofscience.com/wos/author/record/AAB-9662-2021"
+    },
+    {
+      "label": "Scopus",
+      "url": "https://www.scopus.com/authid/detail.uri?authorId=57215220326"
+    },
+    {
       "label": "Google Scholar",
       "url": "https://scholar.google.com/citations?user=mdAU95AAAAAJ"
     },
@@ -34,7 +42,7 @@ window.LAB_DATA = {
       "url": "https://researchmap.jp/pov9"
     },
     {
-      "label": "Hiroshima University profile",
+      "label": "Hiroshima University Profile",
       "url": "https://seeds.office.hiroshima-u.ac.jp/profile/en.789b47fd08b024ca520e17560c007669.html"
     }
   ],
