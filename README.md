@@ -2,7 +2,7 @@
 
 The website of Sokunrith Lab (Dr. Sokunrith Pov, Well-Being Promotion Office, The Institute for Diversity and Inclusion, Hiroshima University).
 
-Live site (after GitHub Pages is switched on): **https://sokunrith.github.io/well-being-promotion-office-report/**
+Live site (after GitHub Pages is switched on): **https://sokunrith.github.io/sokunrithlab/**
 
 ## Files
 
