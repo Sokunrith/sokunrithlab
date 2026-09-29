@@ -64,7 +64,18 @@ window.LAB_DATA = {
       "description": "Hierarchical linear modelling, structural equation modelling, and psychometric scale development with measurement invariance."
     }
   ],
-  "projects": [],
+  "projects": [
+    {
+      "title": "Capacity Building Program on Inclusive Early Childhood Education for Indonesian Kindergarten Teachers",
+      "status": "Ongoing",
+      "period": "November 6-15, 2026",
+      "role": "Project Leader",
+      "funder": "Southeast Asian Ministers of Education Organization Regional Centre for Early Childhood Care Education and Parenting (SEAMEO CECCEP) and Indonesian Kindergarten Teachers’ Association, the Republic of Indonesia (IGTKI)",
+      "partners": "Southeast Asian Ministers of Education Organization Regional Centre for Early Childhood Care Education and Parenting (SEAMEO CECCEP) and Indonesian Kindergarten Teachers’ Association, the Republic of Indonesia (IGTKI)",
+      "summary": "",
+      "url": ""
+    }
+  ],
   "publications": [
     {
       "title": "The influence of training on attitudes, concerns, and efficacy of pre-service teachers towards inclusive education in Cambodia",
