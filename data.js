@@ -66,6 +66,46 @@ window.LAB_DATA = {
   ],
   "projects": [
     {
+      "title": "Training to Trainers of National Institute for Special Education on Credit/Choice Based Learning System",
+      "status": "Ongoing",
+      "period": "October 5-December 18",
+      "role": "Project Leader",
+      "funder": "Special Education Department, Directorate General of Teacher Education and Development, Ministry of Education, Youth and Sport, Cambodia / National Institute for Special Education (NISE), Cambodia",
+      "partners": "Special Education Department, Directorate General of Teacher Education and Development, Ministry of Education, Youth and Sport, Cambodia / National Institute for Special Education (NISE), Cambodia",
+      "summary": "",
+      "url": ""
+    },
+    {
+      "title": "Technical Professional Learning Programme on Understanding the Characteristics of Non-Formal Education Learners and Strategies for Their Empowerment Well-",
+      "status": "Ongoing",
+      "period": "November 2, 2026-February 18, 2027",
+      "role": "Project Leader",
+      "funder": "Directorate of Early Childhood and Nonformal Education Teachers, Ministry of Primary and Secondary Education, The Republic of Indonesia",
+      "partners": "Directorate of Early Childhood and Nonformal Education Teachers, Ministry of Primary and Secondary Education, The Republic of Indonesia",
+      "summary": "",
+      "url": ""
+    },
+    {
+      "title": "Microcredential Program on Innovative STEM Education for Sustainable Learning",
+      "status": "Ongoing",
+      "period": "November 13, 2026-March 4, 2027",
+      "role": "Project Leader",
+      "funder": "Directorate of Primary and Junior Secondary Education Teacher, Directorate General of Teachers and Education Personnel, Ministry of Primary and Secondary Education, The Republic of Indonesia",
+      "partners": "Directorate of Primary and Junior Secondary Education Teacher, Directorate General of Teachers and Education Personnel, Ministry of Primary and Secondary Education, The Republic of Indonesia",
+      "summary": "",
+      "url": ""
+    },
+    {
+      "title": "Microcredential Program on Teacher Psychological Wellbeing for Quality Learning and Sustainable Education",
+      "status": "Ongoing",
+      "period": "October 23, 2026-March 5, 2027",
+      "role": "Project Leader",
+      "funder": "Directorate of Early Childhood and Nonformal Education Teachers, Ministry of Primary and Secondary Education, The Republic of Indonesia",
+      "partners": "Directorate of Early Childhood and Nonformal Education Teachers, Ministry of Primary and Secondary Education, The Republic of Indonesia",
+      "summary": "",
+      "url": ""
+    },
+    {
       "title": "Technical Professional Learning Programme on Training of Trainer (ToT) on Strengthening Teachers’ Psychological Well-Being to Support Professional Performance and Resilience",
       "status": "Ongoing",
       "period": "September 17-October 21, 2026",
@@ -396,9 +436,9 @@ window.LAB_DATA = {
       "url": "https://momiji.hiroshima-u.ac.jp/syllabusHtml_en/2026_03_C7000402_en.html"
     },
     {
-      "title": "Collaborative Online International Seminar A",
-      "level": "Liberal arts education",
-      "term": "Intensive",
+      "title": "Cultivating a Caring and Inclusive Society for All",
+      "level": "International online course (e-START Program)",
+      "term": "First Semester",
       "year": "2026",
       "description": "",
       "url": "https://momiji.hiroshima-u.ac.jp/syllabusHtml_en/2026_AA_65254001_en.html"
