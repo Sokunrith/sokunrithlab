@@ -7,7 +7,7 @@
 window.LAB_DATA = {
   "profile": {
     "labName": "Sokunrith Lab",
-    "tagline": "Research on inclusive education and well-being in schools, from Cambodia and Japan across the Asia-Pacific.",
+    "tagline": "Research on inclusive education and well-being in schools across the Asia-Pacific.",
     "piName": "Sokunrith Pov, PhD",
     "piTitle": "Associate Professor",
     "affiliation": "Well-Being Promotion Office, The Institute for Diversity and Inclusion, Hiroshima University",
