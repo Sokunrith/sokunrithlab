@@ -382,6 +382,15 @@ window.LAB_DATA = {
   ],
   "conferences": [
     {
+      "title": "Teacher Well-Being in Challenging Times: Development of a Japanese Teacher Well-Being Scale for Inclusive Education Contexts",
+      "authors": "Sokunrith Pov, Norimune Kawai",
+      "event": "Rethinking (Inclusive) Education for Challenging Times",
+      "location": "Southern Sun Cape Sun Hotel, Cape Town, South Africa",
+      "date": "2026-11-27",
+      "type": "Presentation",
+      "url": "https://iec-inclusive-education.com/"
+    },
+    {
       "title": "Teachers' challenges in including students with disabilities in regular classrooms in Cambodia",
       "authors": "Pov, S., & Kawai, N.",
       "event": "Council for Exceptional Children 2025 Convention & Expo",
