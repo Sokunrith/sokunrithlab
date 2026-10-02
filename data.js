@@ -2,7 +2,7 @@
    SOKUNRITH LAB — SITE CONTENT
    Edit with admin.html, or edit this file directly on GitHub.
    Dates use the format YYYY-MM-DD.
-   Last updated: 2026-09-29
+   Last updated: 2026-10-02
    ============================================================ */
 window.LAB_DATA = {
   "profile": {
@@ -163,8 +163,8 @@ window.LAB_DATA = {
       "authors": "Pov, S., Kawai, N., Omori, M., & Murakami, R.",
       "venue": "International Journal of Inclusive Education",
       "year": 2026,
-      "volume": "",
-      "pages": "1–17",
+      "volume": "30(12)",
+      "pages": "3885-3901",
       "doi": "10.1080/13603116.2025.2610658",
       "url": "",
       "type": "Journal article",
